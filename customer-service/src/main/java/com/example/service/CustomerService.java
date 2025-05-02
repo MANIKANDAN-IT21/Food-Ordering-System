@@ -10,7 +10,9 @@ public interface CustomerService {
 
 	Optional<Customer> login(String email, String password);
 
-	Optional<Customer> getProfile(Long id);
+	Customer getProfile(Long customerId);
 
 	Customer updateProfile(Long id, Customer updated);
+	
+//	Customer getCustomerById(Long id);
 }

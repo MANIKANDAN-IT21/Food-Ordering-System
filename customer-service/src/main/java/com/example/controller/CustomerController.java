@@ -26,8 +26,17 @@ public class CustomerController {
 	@Autowired
 	private MenuServiceClient menuServiceClient;
 
-	@GetMapping("/customer/menu/{restaurantId}")
-	public List<MenuItemDTO> viewMenu(@PathVariable Long restaurantId) {
+	@GetMapping("menu")
+	public List<MenuItemDTO> viewMenu() {
+		return menuServiceClient.getAllMenu();
+	}
+	
+//	@GetMapping("menu/restaurant/{restaurantId}")
+//	public List<MenuItemDTO> viewMenu(@PathVariable Long restaurantId) {
+//		return menuServiceClient.getMenuByRestaurant(restaurantId);
+//	}
+	@GetMapping("menu/restaurant/{restaurantId}")
+	public List<MenuItemDTO> getMenuByRestaurant(@PathVariable Long restaurantId) {
 		return menuServiceClient.getMenuByRestaurant(restaurantId);
 	}
 
@@ -42,9 +51,9 @@ public class CustomerController {
 				.orElse(ResponseEntity.status(401).build());
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Customer> getProfile(@PathVariable Long id) {
-		return service.getProfile(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+	@GetMapping("/profile/{cid}")
+	public Customer getProfile(@PathVariable("cid") Long customerId) {   
+	    return service.getProfile(customerId);
 	}
 
 	@PutMapping("/{id}")

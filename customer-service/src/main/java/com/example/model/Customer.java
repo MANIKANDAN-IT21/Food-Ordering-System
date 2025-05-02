@@ -24,4 +24,13 @@ public class Customer {
 	private String phone;
 	private String address;
 
+	public Customer(String name, String email, String password, String phone, String address) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+	}
+
 }

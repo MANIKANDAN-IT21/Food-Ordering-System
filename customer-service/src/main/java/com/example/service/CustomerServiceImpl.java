@@ -16,12 +16,12 @@ public class CustomerServiceImpl {
 
 	@Autowired
 	private CustomerRepository repository;
-	
+
 	@Autowired
 	private MenuServiceClient menuServiceClient;
 
 	public List<MenuItemDTO> fetchMenu(Long restaurantId) {
-	    return menuServiceClient.getMenuByRestaurant(restaurantId);
+		return menuServiceClient.getMenuByRestaurant(restaurantId);
 	}
 
 	public Customer register(Customer customer) {
@@ -32,9 +32,10 @@ public class CustomerServiceImpl {
 		return repository.findByEmail(email).filter(c -> c.getPassword().equals(password));
 	}
 
-	public Optional<Customer> getProfile(Long id) {
-		return repository.findById(id);
+	public Customer getProfile(Long customerId) {
+	    return repository.findById(customerId).get();
 	}
+
 
 	public Customer updateProfile(Long id, Customer updated) {
 		Customer c = repository.findById(id).orElseThrow();
